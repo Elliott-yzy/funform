@@ -64,7 +64,7 @@ The "output" refers to what the inner text should be of the textarea at the bott
   - If no course is selected (`other` input field is considered a course), [favourite courses] is _"I have no favourite course"_
   - If 1 course is selected (`other` input field is considered a course), [favourite courses] is _"my favourite course is [course1]"_
   - If 2 courses are selected (`other` input field is considered a course), [favourite courses] is _"my favourite courses are [course1], and [course2]"_
-  - If more than 2 courses are selected (`other` input field is considered a course), [favourite courses] is _"[course1], [course2], and [course3]"_ etc, where ", and" joins the last and second last course.
+  - If more than 2 courses are selected (`other` input field is considered a course), [favourite courses] is _"my favourite courses are [course1], [course2], and [course3]"_ etc, where ", and" joins the last and second last course.
 
 Please note: The age needs to be accurate - you cannot just subtract this year from the date of birth year, you must also take into account months and days.
 
