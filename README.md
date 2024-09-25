@@ -1,5 +1,6 @@
 # Changelog
 
+- 26/09: Fixed favourite courses expected output typo.
 - 24/09: Updated "Graduation Date" behaviour in 1.2. Actions., and clarify that there is no invalid message for "Other" input field.
 
 # Assessment 2 (Vanilla JS)
