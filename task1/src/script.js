@@ -16,7 +16,7 @@ const all_input = () => {
 
   if (for_fullname.length < 3 || for_fullname.length > 50) {
     output_text.value = 'Please input a valid full name';
-    return;
+    return false;
   }
 
   const current_date = new Date();
@@ -24,25 +24,48 @@ const all_input = () => {
   const regex_function = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
   if (!regex_function.test(for_birth)) {
     output_text.value = 'Please input a valid date of birth';
-    return;
+    return false;
   }
   const [birth_day, birth_month, birth_year] = for_birth.split('/').map(Number);
   const user_birth = new Date(birth_year, birth_month - 1, birth_day);
   if (user_birth.getDate() !== birth_day || user_birth.getMonth() + 1 !== birth_month || user_birth >= current_date) {
     output_text.value = 'Please input a valid date of birth';
-    return;
+    return false;
+  }
+
+  let age = current_date.getFullYear() - birth_year;
+  const age_differ_month = current_date.getMonth() - (birth_month - 1);
+  const age_differ_day = current_date.getDate() - birth_day;
+  if (age_differ_month < 0 || (age_differ_month === 0 && age_differ_day < 0)) {
+    age--;
+  }
+  let whether_years;
+  if (age > 1) {
+    whether_years = 'years';
+  } else {
+    whether_years = 'year';
   }
 
   if (!for_graduationDate) {
     output_text.value = 'Please input a valid graduation date';
-    return;
+    return false;
   }
   const [graduate_year, graduate_month, graduate_day] = for_graduationDate.split('/').map(Number);
   const user_graduationDate = new Date(graduate_year, graduate_month - 1, graduate_day);
-  if (user_graduationDate <= current_date) {
-    output_text.value = 'Please input a valid date of birth';
-    return;
+  if (user_graduationDate <= user_birth) {
+    output_text.value = 'Please input a valid graduation date';
+    return false;
   }
+
+  let whether_graduate;
+  if (user_graduationDate > current_date) {
+    whether_graduate = 'graduate';
+  } else {
+    whether_graduate = 'graduated';
+  }
+
+  output_text.value = `My name is ${for_fullname} and I am ${age} ${whether_years} old. I ${whether_graduate} on ${for_graduationDate}.`;
+  return true;
 }
 
 input_fullname.addEventListener('blur', all_input);
