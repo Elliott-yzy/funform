@@ -73,11 +73,26 @@ const all_input = () => {
   }
   if (select_comp1511.checked) {
     all_favourite_courses.push('COMP1511');
+  } 
+  const other_course = other_course_input.value;
+  const regex_other_course = /^[A-Z]{4}[0-9]{4}$/;
+  if (regex_other_course.test(other_course)) {
+    all_favourite_courses.push(other_course);
   }
 
+  let user_favourite_courses = '';
+  if (all_favourite_courses.length === 0) {
+    user_favourite_courses = ', I have no favourite course';
+  } else if (all_favourite_courses.length === 1) {
+    user_favourite_courses = `, my favourite course is ${all_favourite_courses[0]}`;
+  } else if (all_favourite_courses.length === 2) {
+    user_favourite_courses = `, my favourite courses are ${all_favourite_courses[0]}, and ${all_favourite_courses[1]}`;
+  } else {
+    const last_course = all_favourite_courses.pop();
+    user_favourite_courses = `, my favourite courses are ${all_favourite_courses.join(', ')}, and ${last_course}`;
+  }
 
-
-  output_text.value = `My name is ${for_fullname} and I am ${age} ${whether_years} old. I ${whether_graduate} on ${user_graduationDate.toLocaleString('en-US', { month: 'short' })} ${user_graduationDate.getDate()} ${user_graduationDate.getFullYear()}, ${all_favourite_courses}.`;
+  output_text.value = `My name is ${for_fullname} and I am ${age} ${whether_years} old. I ${whether_graduate} on ${user_graduationDate.toLocaleString('en-US', { month: 'short' })} ${user_graduationDate.getDate()} ${user_graduationDate.getFullYear()}${user_favourite_courses}.`;
   return true;
 }
 
@@ -102,3 +117,4 @@ select_all.addEventListener('change', function () {
 select_comp6080.addEventListener('change', all_input);
 select_comp2521.addEventListener('change', all_input);
 select_comp1511.addEventListener('change', all_input);
+other_course_input.addEventListener('input', all_input);
