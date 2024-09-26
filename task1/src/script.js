@@ -28,7 +28,7 @@ const all_input = () => {
   }
   const [birth_day, birth_month, birth_year] = for_birth.split('/').map(Number);
   const user_birth = new Date(birth_year, birth_month - 1, birth_day);
-  if (user_birth.getDate() !== birth_day || user_birth.getMonth() + 1 !== birth_month || user_birth >= current_date) {
+  if (user_birth.getDate() !== birth_day || user_birth.getMonth() + 1 !== birth_month || isNaN(user_birth.getTime()) || user_birth >= current_date) {
     output_text.value = 'Please input a valid date of birth';
     return false;
   }
@@ -50,7 +50,7 @@ const all_input = () => {
     output_text.value = 'Please input a valid graduation date';
     return false;
   }
-  const [graduate_year, graduate_month, graduate_day] = for_graduationDate.split('/').map(Number);
+  const [graduate_year, graduate_month, graduate_day] = for_graduationDate.split('-').map(Number);
   const user_graduationDate = new Date(graduate_year, graduate_month - 1, graduate_day);
   if (user_graduationDate <= user_birth) {
     output_text.value = 'Please input a valid graduation date';
@@ -64,10 +64,41 @@ const all_input = () => {
     whether_graduate = 'graduated';
   }
 
-  output_text.value = `My name is ${for_fullname} and I am ${age} ${whether_years} old. I ${whether_graduate} on ${for_graduationDate}.`;
+  const all_favourite_courses = [];
+  if (select_comp6080.checked) {
+    all_favourite_courses.push('COMP6080');
+  }
+  if (select_comp2521.checked) {
+    all_favourite_courses.push('COMP2521');
+  }
+  if (select_comp1511.checked) {
+    all_favourite_courses.push('COMP1511');
+  }
+
+
+
+  output_text.value = `My name is ${for_fullname} and I am ${age} ${whether_years} old. I ${whether_graduate} on ${user_graduationDate.toLocaleString('en-US', { month: 'short' })} ${user_graduationDate.getDate()} ${user_graduationDate.getFullYear()}, ${all_favourite_courses}.`;
   return true;
 }
 
 input_fullname.addEventListener('blur', all_input);
 input_birth.addEventListener('blur', all_input);
 input_graduate.addEventListener('blur', all_input)
+
+select_all.addEventListener('change', function () {
+  const whether_select_all_checked = select_all.checked;
+  select_comp6080.checked = whether_select_all_checked;
+  select_comp2521.checked = whether_select_all_checked;
+  select_comp1511.checked = whether_select_all_checked;
+  all_input();
+});
+
+[select_comp6080, select_comp2521, select_comp1511].forEach(each_course => {
+  each_course.addEventListener('change', function () {
+    select_all.checked = select_comp6080.checked && select_comp2521.checked && select_comp1511.checked;
+  });
+});
+
+select_comp6080.addEventListener('change', all_input);
+select_comp2521.addEventListener('change', all_input);
+select_comp1511.addEventListener('change', all_input);
