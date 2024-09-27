@@ -40,7 +40,7 @@ const all_input = () => {
     age--;
   }
   let whether_years;
-  if (age > 1) {
+  if (age != 1) {
     whether_years = 'years';
   } else {
     whether_years = 'year';
