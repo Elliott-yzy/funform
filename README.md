@@ -1,3 +1,9 @@
+# Changelog
+
+- 03/10: Clarify "changing" action behaviour, and provide 3-letter month abbreviatons and a 5th sample output.
+- 26/09: Fixed favourite courses expected output typo.
+- 24/09: Updated "Graduation Date" behaviour in 1.2. Actions., and clarify that there is no invalid message for "Other" input field.
+
 # Assessment 2 (Vanilla JS)
 
 [Please see course website for full spec](https://cgi.cse.unsw.edu.au/~cs6080/NOW/assessments/assignments/ass2)
@@ -34,8 +40,8 @@ The page consists of a:
 
 The following are events that trigger a render that should be binded to particular actions
 
-- Blur of the "Full Name", "Date of Birth", or "Graduation Date" should trigger a render.
-- Changing of the "Favourite Courses" or "Other" text input should trigger a render.
+- Blur of the "Full Name" or "Date of Birth" should trigger a render.
+- Changing of the "Favourite Courses" or "Other" text input, or "Graduation Date" should trigger a render (you only need the render to take effect after the field is unfocused, not after keypress).
 
 There are key buttons on the page:
 
@@ -55,12 +61,12 @@ The "output" refers to what the inner text should be of the textarea at the bott
   - If the age is 1, [year/years] is _"year"_, otherwise it is _"years"_.
   - If the graduation date is in the future, [graduate/graduated] is _"graduate"_, otherwise it is _"graduated"_.
   - [graduation date] is the `graduation date` in the format _"[3-letter month abbreviation] [DD] [YYYY]"_. For example, `25/06/2024` will show _"Jun 25 2024"_.
-    - You can find the expected 3-letter month abbreviation in the `Graduation Date` calendar dropdown.
-  - If `other` input field is invalid or empty, it does not need to be included in [favourite courses].
+    - The 3-letter month abbreviations are Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, and Dec.
+  - If `other` input field is invalid or empty, it does not need to be included in [favourite courses] and there is no invalid message for this.
   - If no course is selected (`other` input field is considered a course), [favourite courses] is _"I have no favourite course"_
   - If 1 course is selected (`other` input field is considered a course), [favourite courses] is _"my favourite course is [course1]"_
   - If 2 courses are selected (`other` input field is considered a course), [favourite courses] is _"my favourite courses are [course1], and [course2]"_
-  - If more than 2 courses are selected (`other` input field is considered a course), [favourite courses] is _"[course1], [course2], and [course3]"_ etc, where ", and" joins the last and second last course.
+  - If more than 2 courses are selected (`other` input field is considered a course), [favourite courses] is _"my favourite courses are [course1], [course2], and [course3]"_ etc, where ", and" joins the last and second last course.
 
 Please note: The age needs to be accurate - you cannot just subtract this year from the date of birth year, you must also take into account months and days.
 
@@ -79,6 +85,8 @@ The following are sample outputs for different valid combinations of value entri
 3. My name is Hayden and I am 1 year old. I graduate on Jun 10 2025, and my favourite course is COMP6080.
 
 4. My name is Eckles and I am 30 years old. I graduate on Dec 25 2026, and my favourite course is MATH1081.
+
+5. My name is Hayden Eckles and I am 28 years old. I graduate on Sep 01 2026, and my favourite courses are COMP6080, COMP2521, COMP1511, and COMP6771.
 
 Ensure that your output in the textarea matches the **spacing, letter casing and wording** for each of the examples provided. Also note that courses are listed in order of their checkbox.
 
