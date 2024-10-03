@@ -92,7 +92,7 @@ const all_input = () => {
     user_favourite_courses = `, and my favourite courses are ${all_favourite_courses.join(', ')}, and ${last_course}`;
   }
 
-  output_text.value = `My name is ${for_fullname} and I am ${age} ${whether_years} old. I ${whether_graduate} on ${user_graduationDate.toLocaleString('en-US', { month: 'short' })} ${user_graduationDate.getDate()} ${user_graduationDate.getFullYear()}${user_favourite_courses}.`;
+  output_text.value = `My name is ${for_fullname} and I am ${age} ${whether_years} old. I ${whether_graduate} on ${user_graduationDate.toLocaleString('en-US', { month: 'short' })} ${String(user_graduationDate.getDate()).padStart(2, '0')} ${user_graduationDate.getFullYear()}${user_favourite_courses}.`;
   return true;
 }
 
