@@ -1,18 +1,4 @@
-# Changelog
-
-- 03/10: Clarify "changing" action behaviour, and provide 3-letter month abbreviatons and a 5th sample output.
-- 26/09: Fixed favourite courses expected output typo.
-- 24/09: Updated "Graduation Date" behaviour in 1.2. Actions., and clarify that there is no invalid message for "Other" input field.
-
-# Assessment 2 (Vanilla JS)
-
-[Please see course website for full spec](https://cgi.cse.unsw.edu.au/~cs6080/NOW/assessments/assignments/ass2)
-
-This assignment is due _Friday 4th October, 8pm_.
-
-Please run `./util/setup.sh` in your terminal before you begin. This will set up some checks in relation to the "Git Commit Requirements".
-
-## Your Task - FunForm
+## Task - FunForm
 
 ### 1. Overview
 
